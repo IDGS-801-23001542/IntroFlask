@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Operaciones Básicas</h2>
+
+<form action="/operasBas" method="POST">
+  <div class="mb-3">
+    <label for="n1" class="form-label">Numero 1</label>
+    <input type="number" class="form-control" id="n1" name="n1" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="n2" class="form-label">Numero 2</label>
+    <input type="number" class="form-control" id="n2" name="n2" required>
+  </div>
+
+  <button class="btn btn-primary" type="submit">Calcular</button>
+</form>
+
+<hr>
+
+<h4>Resultado</h4>
+<h1>{{ n1 }} + {{ n2 }} = {{ res }}</h1>
+
+{% endblock %}
