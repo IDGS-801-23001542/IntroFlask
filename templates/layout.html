@@ -45,7 +45,17 @@
 </nav>
 
 <div class="container mt-5 pt-4">
-  {% block content %}
+{% with messages=get_flashed_message()%}
+  {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-succes">
+      {{message}}
+    </div>
+    {%endfor%}
+
+{%endif%}
+{%endwith%}
+{% block content %}
   {% endblock %}
 </div>
 
