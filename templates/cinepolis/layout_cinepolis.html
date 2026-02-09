@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title if title else "Cinépolis" }}</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background:#0b2a6f;
+      color:#fff;
+      margin:0;
+    }
+
+    .wrap { max-width: 920px; margin: 0 auto; padding: 12px; }
+    .panel {
+      background:#123a8a;
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:12px;
+      padding:12px;
+    }
+
+    label { display:block; margin-top:7px; font-weight:700; }
+
+    input[type="text"],
+    input[type="number"]{
+      width: 100%;
+      padding: 9px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.4);
+      margin-top: 6px;
+      background: #eaf1ff;        
+      color: #0b2a6f;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    input::placeholder { color: rgba(11,42,111,.6); }
+
+    input:focus {
+      border-color: #f6c400;
+      box-shadow: 0 0 0 3px rgba(246,196,0,.25);
+      background: #ffffff;
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .radio-group {
+      margin-top: 6px;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .radio-group input[type="radio"] {
+      accent-color: #f6c400;
+      width: 16px;
+      height: 16px;
+      margin: 0;
+    }
+
+    .ok{
+      background: #1d7a3a;
+      border: 1px solid rgba(255,255,255,.25);
+      color: #fff;
+      padding: 12px 14px;
+      border-radius: 10px;
+      margin-top: 10px;
+      font-weight: 800;
+    }
+
+    .error{
+      background: #7a1d1d;
+      border: 1px solid rgba(255,255,255,.25);
+      color: #fff;
+      padding: 12px 14px;
+      border-radius: 10px;
+      margin-top: 10px;
+      font-weight: 800;
+    }
+
+    .btn {
+      padding:10px 16px;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:800;
+      text-decoration:none;
+      display:inline-block;
+    }
+    .btn-primary { background:#f6c400; color:#000; }
+    .btn-danger { background:#d64545; color:#fff; }
+
+    .grid-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 720px) {
+      .grid-top { grid-template-columns: 1fr; }
+    }
+
+    .box {
+      background: rgba(255,255,255,.08);
+      padding:10px 12px;
+      border-radius:10px;
+    }
+
+    .section-title {
+      font-weight: 900;
+      margin: 0 0 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title::before {
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:#f6c400;
+    }
+
+    .logo-area {
+      display:flex;
+      justify-content:center;
+      margin:6px 0 4px 0;
+    }
+    .logo-area img {
+      width:170px;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.25));
+    }
+
+    .actions {
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      margin-top:6px;
+      flex-wrap: wrap;
+    }
+
+    .title { text-align:center; margin-bottom:8px; }
+    .title h1 { margin:0; font-size:1.6rem; }
+    .hint { opacity:.9; font-size:.9rem; }
+
+    p { margin: 6px 0; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="title">
+      <h1>Cinépolis</h1>
+      <div class="hint">La Capital del cine</div>
+    </div>
+
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

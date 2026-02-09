@@ -1,0 +1,61 @@
+{% extends "cinepolis/layout_cinepolis.html" %}
+{% block content %}
+<div class="panel">
+
+  <form action="{{ url_for('cinepolis_procesar') }}" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <div class="grid-top">
+
+      <div class="box">
+        <h2 class="section-title">Entradas</h2>
+
+        <label>Nombre</label>
+        <input type="text" name="nombre" placeholder="Tu nombre" required>
+
+        <label>Cantidad compradores</label>
+        <input type="number" name="compradores" min="1" placeholder="Ej: 2" required>
+
+        <label>Cantidad de boletos</label>
+        <input type="number" name="boletos" min="1" placeholder="Ej: 5" required>
+
+        <label>Tarjeta Cinéco</label>
+        <div class="radio-group">
+          <label>
+            <input type="radio" name="cineco" value="si">
+            Sí
+          </label>
+          <label>
+            <input type="radio" name="cineco" value="no" checked>
+            No
+          </label>
+        </div>
+      </div>
+
+      <div class="box">
+        <h2 class="section-title">Salidas</h2>
+        <p><b>Valor a pagar:</b> (se calcula al procesar)</p>
+        <p class="hint">
+          Máx 7 boletos por persona.<br>
+          3–5 boletos: 10% desc.<br>
+          6+ boletos: 15% desc.<br>
+          Cinéco: 10% adicional.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="logo-area">
+      <img src="{{ url_for('static', filename='cinepolis/cinepolis-logo.png') }}" alt="Cinépolis">
+    </div>
+
+    <div class="box">
+      <h2 class="section-title">Acciones</h2>
+      <div class="actions">
+        <button class="btn btn-primary" type="submit">Procesar</button>
+        <a class="btn btn-danger" href="{{ url_for('index') }}">Salir</a>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

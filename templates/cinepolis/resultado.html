@@ -1,0 +1,74 @@
+{% extends "cinepolis/layout_cinepolis.html" %}
+{% block content %}
+
+<div class="panel">
+
+  <h2 class="section-title">Resultado</h2>
+
+  {% if error %}
+    <div class="error">
+      <b>Error:</b> {{ error }}
+    </div>
+
+    <div class="logo-area">
+      <img src="{{ url_for('static', filename='cinepolis/cinepolis-logo.png') }}" alt="Cinépolis">
+    </div>
+
+    <div class="box">
+      <h2 class="section-title">Acciones</h2>
+      <div class="actions">
+        <a class="btn btn-primary" href="{{ url_for('cinepolis_form') }}">Volver</a>
+        <a class="btn btn-danger" href="{{ url_for('index') }}">Salir</a>
+      </div>
+    </div>
+
+  {% else %}
+    <div class="ok">
+      <b>Valor a pagar:</b> ${{ "{:,.2f}".format(data.total_final) }}
+    </div>
+
+    <div class="grid-top" style="margin-top:10px;">
+
+      <div class="box">
+        <h2 class="section-title">Datos</h2>
+        <p><b>Nombre:</b> {{ data.nombre }}</p>
+        <p><b>Compradores:</b> {{ data.compradores }}</p>
+        <p><b>Boletos:</b> {{ data.boletos }}</p>
+        <p><b>Máximo permitido:</b> {{ data.max_boletos_permitidos }}</p>
+        <p><b>Tarjeta Cinéco:</b> {{ "Sí" if data.tiene_cineco else "No" }}</p>
+      </div>
+
+      <div class="box">
+        <h2 class="section-title">Cálculo</h2>
+        <p><b>Precio por boleto:</b> ${{ "{:,.2f}".format(data.precio_boleto) }}</p>
+        <p><b>Subtotal:</b> ${{ "{:,.2f}".format(data.subtotal) }}</p>
+
+        <p>
+          <b>Descuento base:</b>
+          {{ (data.desc_base_pct * 100)|round(0) }}%
+          ( -${{ "{:,.2f}".format(data.descuento_base) }} )
+        </p>
+        <p>
+          <b>Descuento Cinéco:</b>
+          {{ (data.desc_cineco_pct * 100)|round(0) }}%
+          ( -${{ "{:,.2f}".format(data.descuento_cineco) }} )
+        </p>
+
+        <p><b>Total final:</b> ${{ "{:,.2f}".format(data.total_final) }}</p>
+      </div>
+    </div>
+
+    <div class="logo-area">
+      <img src="{{ url_for('static', filename='cinepolis/cinepolis-logo.png') }}" alt="Cinépolis">
+    </div>
+
+    <div class="box">
+      <h2 class="section-title">Acciones</h2>
+      <div class="actions">
+        <a class="btn btn-primary" href="{{ url_for('cinepolis_form') }}">Nuevo cálculo</a>
+        <a class="btn btn-danger" href="{{ url_for('index') }}">Salir</a>
+      </div>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
